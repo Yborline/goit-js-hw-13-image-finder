@@ -36,11 +36,9 @@ function onSearch(e) {
 }
 
 function onLodeMore() {
- 
-    newApiService.fetchCard().then(createMarkup).then(scrollCard)
-  
 
-    
+    newApiService.fetchCard().then(createMarkup).then(scrollCard)
+
 }
 
 
