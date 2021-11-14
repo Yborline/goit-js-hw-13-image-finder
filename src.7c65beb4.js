@@ -133,15 +133,15 @@ class NewApiService {
     this.page = 1;
   }
 
-  fetchCard() {
+  async fetchCard() {
     const KEY = '24295658-d33a4cb7a7ba959c48fb9a807';
     const basyUrl = 'https://pixabay.com/api/';
     const url = `${basyUrl}?image_type=photo&orientation=horizontal&q=${this.query}&page=${this.page}&per_page=12&key=${KEY}`;
-    return fetch(url).then(response => response.json()).then(data => {
-      this.page += 1;
-      console.log(data.hits);
-      return data.hits;
-    });
+    const search = await fetch(url);
+    const rJson = await search.json();
+    const hits = await rJson.hits;
+    this.page += 1;
+    return hits;
   }
 
   resetPage() {
@@ -2229,7 +2229,7 @@ const templateFunction = _handlebars.default.template({
           "column": 60
         }
       }
-    }) : helper)) + " />\r\n    \r\n        <div class=\"stats\">\r\n            <p class=\"stats-item\">\r\n                <i class=\"material-icons\">thumb_up</i>\r\n                1108\r\n            </p>\r\n            <p class=\"stats-item\">\r\n                <i class=\"material-icons\">visibility</i>\r\n                320321\r\n            </p>\r\n            <p class=\"stats-item\">\r\n                <i class=\"material-icons\">comment</i>\r\n                129\r\n            </p>\r\n            <p class=\"stats-item\">\r\n                <i class=\"material-icons\">cloud_download</i>\r\n                176019\r\n            </p>\r\n        </div>\r\n    </div>\r\n</li>\r\n";
+    }) : helper)) + " \r\n        loading=\"lazy\"/>\r\n    \r\n        <div class=\"stats\">\r\n            <p class=\"stats-item\">\r\n                <i class=\"material-icons\">thumb_up</i>\r\n                1108\r\n            </p>\r\n            <p class=\"stats-item\">\r\n                <i class=\"material-icons\">visibility</i>\r\n                320321\r\n            </p>\r\n            <p class=\"stats-item\">\r\n                <i class=\"material-icons\">comment</i>\r\n                129\r\n            </p>\r\n            <p class=\"stats-item\">\r\n                <i class=\"material-icons\">download</i>\r\n                176019\r\n            </p>\r\n        </div>\r\n    </div>\r\n</li>\r\n";
   },
   "compiler": [8, ">= 4.3.0"],
   "main": function (container, depth0, helpers, partials, data) {
@@ -2254,7 +2254,7 @@ const templateFunction = _handlebars.default.template({
           "column": 4
         },
         "end": {
-          "line": 28,
+          "line": 29,
           "column": 9
         }
       }
@@ -2302,8 +2302,7 @@ function onSearch(e) {
 }
 
 function onLodeMore() {
-  newApiService.fetchCard().then(createMarkup);
-  scrollCard();
+  newApiService.fetchCard().then(createMarkup).then(scrollCard);
 }
 
 function createMarkup(card) {
@@ -2321,4 +2320,4 @@ function scrollCard() {
   });
 }
 },{"./sass/main.scss":"clu1","./js/apiService":"eQwa","./tampletes/list-photo.hbs":"I3sL"}]},{},["Focm"], null)
-//# sourceMappingURL=/src.9ab05895.js.map
+//# sourceMappingURL=/src.7c65beb4.js.map
