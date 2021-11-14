@@ -2,11 +2,11 @@
   "name": "parcel-project-template",
   "version": "1.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "homepage": "https://Yborline.github.io/goit-js-hw-13-image-finder",
   "scripts": {
-    "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --no-minify",
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html --no-minify",
     "predeploy": "npm run build  --public-url /goit-js-hw-13-image-finder/",
     "deploy": "gh-pages -d dist"
   },
