@@ -1,5 +1,60 @@
 import './sass/main.scss';
+import NewApiService from './js/apiService'
+import liCard from './tampletes/list-photo.hbs'
 
-const KEY = '24295658-d33a4cb7a7ba959c48fb9a807'
+const refs = {
+    formContainer: document.querySelector('#search-form'),
+    searchButton: document.querySelector('.js-search-butt'),
+    inputCard: document.querySelector('.input-search'),
+    loadMoreButt: document.querySelector('.js-more-butt'),
+    gallery: document.querySelector('.gallery')
+}
+console.log(refs.gallery)
 
-fetch(`https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=cat&page=1&per_page=12&key=${KEY}`).then(response=>response.json).then(console.log)
+// console.log(refs.searchButton)
+
+// const element = document.getElementById('.card-container');
+
+const newApiService = new NewApiService
+
+
+refs.formContainer.addEventListener('submit', onSearch);
+refs.loadMoreButt.addEventListener('click', onLodeMore);
+
+
+function onSearch(e) {
+    e.preventDefault();
+    
+    newApiService.query = e.currentTarget.elements.query.value
+    //     console.log(newApiService.query)
+    // newApiService.query = refs.inputCard.value
+    // console.log(newApiService.query)
+    newApiService.resetPage()
+    newApiService.fetchCard().then(createMarkup)
+    clearArticlesContainer()
+
+}
+
+function onLodeMore() {
+ 
+    newApiService.fetchCard().then(createMarkup).then(scrollCard)
+  
+
+    
+}
+
+
+function createMarkup(card) {
+    refs.gallery.insertAdjacentHTML('beforeend',liCard(card))
+}
+
+function clearArticlesContainer() {
+    refs.gallery.innerHTML = '';
+    
+}
+function scrollCard(){
+refs.gallery.scrollIntoView({
+  behavior: 'smooth',
+  block: 'end',
+});
+}
