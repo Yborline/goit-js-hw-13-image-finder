@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/*
+ * Главный файл стилей.
+ * Все паршалы подключаются сюда.
+ */
+body {
+  margin: auto;
+  width: 1980px;
+}
+
+.gallery {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.search-butt {
+  width: 100px;
+  height: 50px;
+  color: white;
+  background-color: gray;
+  margin-left: 20px;
+  border-radius: 10px;
+}
+
+.more-butt {
+  width: 200px;
+  height: 50px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  border: solid 1px gray;
+  margin-bottom: 20px;
+}
+
+.photo {
+  object-fit: cover;
+  height: 400px;
+  width: 500px;
+}
+
+.input-search {
+  width: 250px;
+  height: 50px;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+
+.more-container {
+  display: flex;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=/src.4880f270.css.map */
