@@ -14,9 +14,7 @@ console.log(refs.gallery)
 // console.log(refs.searchButton)
 
 // const element = document.getElementById('.card-container');
-
 const newApiService = new NewApiService
-
 
 refs.formContainer.addEventListener('submit', onSearch);
 refs.loadMoreButt.addEventListener('click', onLodeMore);
